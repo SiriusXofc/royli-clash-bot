@@ -21,6 +21,15 @@ class PanelManager {
   }
 
   register(message, tag, page = 'overview') {
+    if (this.panels.size >= config.MAX_ACTIVE_PANELS) {
+      const oldest = this.panels.keys().next().value;
+      if (oldest) {
+        this.panels.delete(oldest);
+        redis.del(`panel:${oldest}`).catch(() => {});
+        redis.removeFromSet('panels:index', oldest).catch(() => {});
+        logger.debug({ event: 'panel.evicted', messageId: oldest, maxActivePanels: config.MAX_ACTIVE_PANELS }, 'Painel antigo removido por limite de memória');
+      }
+    }
     const entry = { channelId: message.channelId, messageId: message.id, tag, page, lastFingerprint: null, expiresAt: Date.now() + config.PANEL_TTL_SECONDS * 1000 };
     this.panels.set(message.id, entry);
     redis.setJson(`panel:${message.id}`, entry, config.PANEL_TTL_SECONDS).catch(() => {});

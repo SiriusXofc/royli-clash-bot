@@ -1,4 +1,4 @@
-const { Client, Events, GatewayIntentBits, MessageFlags } = require('discord.js');
+const { Client, Events, GatewayIntentBits, MessageFlags, Options } = require('discord.js');
 const config = require('./config');
 const logger = require('./logger');
 const { normalizePlayerTag } = require('./utils');
@@ -9,7 +9,20 @@ const { registerCommands } = require('./registerCommands');
 const { RelayMonitor } = require('./services/relayMonitor');
 const { renderErrorPanel } = require('./ui/errorPanel');
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const client = new Client({
+  intents: [GatewayIntentBits.Guilds],
+  makeCache: Options.cacheWithLimits({
+    ...Options.DefaultMakeCacheSettings,
+    UserManager: 100,
+    GuildMemberManager: 0,
+    MessageManager: 0,
+    PresenceManager: 0,
+    ReactionManager: 0,
+    ThreadManager: 0,
+    VoiceStateManager: 0
+  }),
+  sweepers: Options.DefaultSweeperSettings
+});
 const panels = new PanelManager(client);
 const relayMonitor = new RelayMonitor(client);
 

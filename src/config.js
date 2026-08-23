@@ -40,7 +40,8 @@ const schema = z.object({
   PROFILE_CACHE_TTL_SECONDS: z.coerce.number().int().positive().default(60),
   BATTLELOG_CACHE_TTL_SECONDS: z.coerce.number().int().positive().default(60),
   PANEL_REFRESH_INTERVAL_SECONDS: z.coerce.number().int().positive().default(60),
-  PANEL_TTL_SECONDS: z.coerce.number().int().positive().default(86400)
+  PANEL_TTL_SECONDS: z.coerce.number().int().positive().default(86400),
+  MAX_ACTIVE_PANELS: z.coerce.number().int().positive().max(1000).default(100)
 }).superRefine((data, context) => {
   const relayConfigured = Boolean(data.CLASH_RELAY_BASE_URL || data.CLASH_RELAY_TOKEN);
   if (relayConfigured && (!data.CLASH_RELAY_BASE_URL || !data.CLASH_RELAY_TOKEN)) {
