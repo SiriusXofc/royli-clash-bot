@@ -1,0 +1,9 @@
+DISPLAY_NAME=Royli API
+DESCRIPTION=Relay seguro para a API oficial do Clash Royale
+MAIN=main.go
+MEMORY=512
+RUNTIME=golang
+START=go run .
+VERSION=recommended
+AUTORESTART=true
+SUBDOMAIN=royaliapi
