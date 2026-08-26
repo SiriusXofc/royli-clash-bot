@@ -1,5 +1,14 @@
 # Royli
 
+> [!CAUTION]
+> ### Comunicado importante
+>
+> A instância oficial do Royli não está online no momento. O repositório continua público para estudo, testes e aprendizado: qualquer pessoa pode baixar o código, configurar o próprio ambiente, executar o bot e realizar alterações para fins educacionais.
+>
+> O projeto é open source/public source, mas isso **não autoriza a venda, revenda, comercialização, hospedagem como serviço pago ou cobrança por qualquer parte do Royli**. Não venda o bot, o código, uma versão modificada ou acesso a uma instância baseada neste projeto.
+>
+> Quem quiser utilizar o Royli deve criar e manter a própria instalação, providenciar suas próprias credenciais, serviços e custos de hospedagem, sempre respeitando os termos do Discord, da Supercell e dos demais serviços utilizados.
+
 <div align="center">
 
 ### ⚔️ Clash Royale dentro do Discord
